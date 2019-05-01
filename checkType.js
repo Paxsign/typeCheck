@@ -45,8 +45,7 @@ function isEmpty(emp) {
     return true;
   } else {
     if (
-      Object.prototype.toString.call(emp) == "[object Null]" ||
-      Object.prototype.toString.call(emp) == "[object Undefined]"
+      Object.prototype.toString.call(emp) == "[object Null]" || Object.prototype.toString.call(emp) == "[object Undefined]"
     ) {
       return true;
     } else {
@@ -55,9 +54,9 @@ function isEmpty(emp) {
   }
 }
 
-
-function extendClass (Parent, Child) {
-    for(var prop in Parent.prototype){
-        Child.prototype[prop]=Parent.prototype[prop];
-    }
+function extendClass(Parent, Child) {
+  var F = function() {};
+  F.prototype = Parent.prototype;
+  Child.prototype = new F();
+  Child.prototype.constructor = Child;
 }
